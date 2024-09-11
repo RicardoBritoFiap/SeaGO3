@@ -1,5 +1,4 @@
 package com.fiap.seago.empresa.token;
 
-public class Credentials {
-    
+public record Credentials(String username, String password) {
 }
