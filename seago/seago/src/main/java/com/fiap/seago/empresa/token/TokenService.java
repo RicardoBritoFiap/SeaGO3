@@ -19,7 +19,7 @@ public class TokenService {
                 .withSubject(username)
                 .withExpiresAt(expirationAt)
                 .sign(algorithm);
-        return new Token(token, "JWT",username);
+        return new Token(token,username);
     }
 
 }

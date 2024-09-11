@@ -16,9 +16,15 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
 
         http.authorizeHttpRequests(auth ->
-                auth
-                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/pass").permitAll()
+                auth.anyRequest().permitAll()
+                        // .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        // .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        // .requestMatchers(HttpMethod.GET, "/users").authenticated()
+                        // .requestMatchers(HttpMethod.GET, "/navio").authenticated()
+                        // .requestMatchers(HttpMethod.POST, "/navio").authenticated()
+                        // .requestMatchers(HttpMethod.DELETE, "/navio").authenticated()
+                        // .requestMatchers(HttpMethod.PUT, "/navio").authenticated()
+                        
         );
 
         return http.build();

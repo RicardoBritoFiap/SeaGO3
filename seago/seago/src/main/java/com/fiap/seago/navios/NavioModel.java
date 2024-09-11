@@ -1,6 +1,5 @@
 package com.fiap.seago.navios;
 
-import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,22 +31,5 @@ public class NavioModel {
     @Size(min = 1, max = 15)
     private String capacidade_carga;
 
-    @NotBlank
-    @Size(min = 1, max = 15)
-    private String comprimento_navio;
-
-    @NotBlank
-    @Size(min = 1, max = 15)
-    private String largura_navio;
-
-    @NotBlank
-    @Size(min = 1, max = 15)
-    private String profundidade_navio;
-
-    @NotBlank
-    @Size(min = 1, max = 15)
-    private String altura_navio;
-
     
-    private LocalDate ultima_manutencao;
 }

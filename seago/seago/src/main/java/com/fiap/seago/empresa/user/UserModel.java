@@ -23,5 +23,9 @@ public class UserModel {
 
     private String username;
 
+    private String email;
+
+    private String cnpj;
+
     private String password;
 }

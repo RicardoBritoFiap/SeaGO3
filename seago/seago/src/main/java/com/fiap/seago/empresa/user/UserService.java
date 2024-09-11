@@ -1,17 +1,20 @@
-package com.fiap.seago.empresa.token;
+package com.fiap.seago.empresa.user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.fiap.seago.empresa.user.UserRepository;
+import com.fiap.seago.empresa.token.Credentials;
+import com.fiap.seago.empresa.token.Token;
+import com.fiap.seago.empresa.token.TokenService;
+
 
 @Service
-public class AuthService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, TokenService tokenService, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, TokenService tokenService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.tokenService = tokenService;
         this.passwordEncoder = passwordEncoder;

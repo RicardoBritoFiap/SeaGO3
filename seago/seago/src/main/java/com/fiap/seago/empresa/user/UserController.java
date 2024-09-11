@@ -1,4 +1,4 @@
-package com.fiap.seago.navios;
+package com.fiap.seago.empresa.user;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,15 @@ import org.springframework.web.server.ResponseStatusException;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import jakarta.validation.Valid;
 
+
 @RestController
-@RequestMapping(path = "/navio")
-public class NavioController {
+@RequestMapping(path = "/User")
+public class UserController {
     @Autowired
-    private NavioRepository repository;
+    private UserRepository repository;
 
     @GetMapping("{id}")
-    public ResponseEntity<NavioModel> getNavio(@PathVariable Long id) {
+    public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
 
         return repository
                 .findById(id)
@@ -31,39 +32,39 @@ public class NavioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<NavioModel>> getNavio() {
-        List<NavioModel> navios = repository.findAll();
-        return ResponseEntity.ok(navios);
+    public ResponseEntity<List<UserModel>> getUser() {
+        List<UserModel> Users = repository.findAll();
+        return ResponseEntity.ok(Users);
     }
 
     @PostMapping
-    public ResponseEntity<NavioModel> createNavio(@RequestBody @Valid NavioModel navios) {
-        repository.save(navios);
-        return ResponseEntity.ok(navios);
+    public ResponseEntity<UserModel> createUser(@RequestBody @Valid UserModel Users) {
+        repository.save(Users);
+        return ResponseEntity.ok(Users);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteNavio(@PathVariable Long id) {
-        verificarseexistenavio(id);
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        verificarseexisteUser(id);
         repository.deleteById(id);
 
-        return ResponseEntity.ok("Navio deletado com sucesso");
+        return ResponseEntity.ok("User deletado com sucesso");
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<NavioModel> updateNavio(@PathVariable Long id, @RequestBody NavioModel navio) {
-        verificarseexistenavio(id);
-        navio.setId(id);
-        repository.save(navio);
+    public ResponseEntity<UserModel> updateUser(@PathVariable Long id, @RequestBody UserModel User) {
+        verificarseexisteUser(id);
+        User.setId(id);
+        repository.save(User);
 
-        return ResponseEntity.ok(navio);
+        return ResponseEntity.ok(User);
     }
 
-    private void verificarseexistenavio(Long id) {
+    private void verificarseexisteUser(Long id) {
         repository
                 .findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         NOT_FOUND,
-                        "id do Navio não encontrado"));
+                        "id do User não encontrado"));
     }
 }
