@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/navio")
+@RequestMapping(path = "/NAVIOS")
 public class NavioController {
     @Autowired
     private NavioRepository repository;

@@ -15,16 +15,15 @@ public class SecurityConfig {
     public SecurityFilterChain config(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
 
-        http.authorizeHttpRequests(auth ->
-                auth.anyRequest().permitAll()
+        http.authorizeHttpRequests(auth -> auth
                         // .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         // .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         // .requestMatchers(HttpMethod.GET, "/users").authenticated()
-                        // .requestMatchers(HttpMethod.GET, "/navio").authenticated()
-                        // .requestMatchers(HttpMethod.POST, "/navio").authenticated()
-                        // .requestMatchers(HttpMethod.DELETE, "/navio").authenticated()
-                        // .requestMatchers(HttpMethod.PUT, "/navio").authenticated()
-                        
+                        // .requestMatchers(HttpMethod.GET, "/navios").authenticated()
+                        // .requestMatchers(HttpMethod.POST, "/navios").authenticated()
+                        // .requestMatchers(HttpMethod.DELETE, "/navios").authenticated()
+                        // .requestMatchers(HttpMethod.PUT, "/navios").authenticated() 
+                        .anyRequest().permitAll()
         );
 
         return http.build();

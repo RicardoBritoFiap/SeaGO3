@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping(path = "/User")
+@RequestMapping(path = "/USERS")
 public class UserController {
     @Autowired
     private UserRepository repository;
