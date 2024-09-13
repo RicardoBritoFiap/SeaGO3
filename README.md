@@ -1,5 +1,6 @@
-# 🌊SeaGO3 API #
-EsseRepositorio destinado à entrga da Sprint 3 do projeto SeaGO, voltado a diciplina de Java Advanced. Utilizando uma API com o framework Spring Boot no método MVC, juntamente com Thymeleaf. A API em qustão vai ser responsavel pelas funções de cadastro, login e detalhes do navio.
+# 🚀SynthAI API #
+Esse repositório trás o crud da API referente ao Aproveitamento das Oportunidades de Vendas, que analisa os dados dos clientes e utiliza algoritmos de recomendação para identificar oportunidades de venda cruzadas e adicionais. Dessa forma, são oferecidos produtos ou serviços extras que atendam às necessidades e preferências individuais de cada cliente. Esse processo resulta em uma experiência mais personalizada e relevante, aumentando as taxas de conversão e otimizando as receitas.
+O restante será reservado para apresentar nas Sprints seguintes do Challenge.
 
 👥 **Integrantes do Grupo:**
 
@@ -13,10 +14,6 @@ EsseRepositorio destinado à entrga da Sprint 3 do projeto SeaGO, voltado a dici
 
 - RM98370 - Ricardo Brito Ponticelli Prieto
 
-## [🎬Link do Vídeo Pitch]() ##
-
-## [🎬Link do Vídeo de Explicação do Código Fonte]() ##
-
 # [📋Endpoints da API] #
 
 ### *Os endpoints e requisições da API podem ser acessadas rodando a API e utilizando o link abaixo* ###
@@ -24,5 +21,7 @@ http://localhost:8080/swagger-ui/index.html#/
 
 
 ## 📊Diagrama de Classe/Modelo Lógico 
+<img src="./diagramas/diagrama de classes.png">
+<img src="./diagramas/diagrama modelo logico.png">
 
-<img src="./diagramas/Relacional_1.jpeg">
+## [🎬Link do vídeo](https://youtu.be/VYRM56kuzSs) ##
