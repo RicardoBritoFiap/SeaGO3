@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Cadastro de Empresa</h1>
-    <form th:action="@{/users}" th:object="${user}" method="post">
+    <form th:action="@{/users/registerr}" th:object="${user}" method="post">
         <div>
             <label>Username:</label>
             <input type="text" th:field="*{username}" required/>

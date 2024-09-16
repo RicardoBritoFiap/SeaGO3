@@ -1,11 +1,10 @@
-<!-- home.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
 </head>
 <body>
-    <h1>Bem-vindo(a)!</h1>
+    <h1>Bem-vindo(a), <span th:text="${username}"></span>!</h1>
     <p>Escolha uma ação abaixo:</p>
     <ul>
         <li><a th:href="@{/dados/form}">Cadastrar Dados da Empresa</a></li>

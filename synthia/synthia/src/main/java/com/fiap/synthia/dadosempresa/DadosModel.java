@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -43,8 +44,9 @@ public class DadosModel {
 
     @NotBlank
     @Size(min = 1, max = 100)
-    private String acessos_platadorma;
+    private String acessos_plataforma;
 
     @ManyToOne
+    @JoinColumn(name = "users_id")
     private UserModel usermodel;
 }

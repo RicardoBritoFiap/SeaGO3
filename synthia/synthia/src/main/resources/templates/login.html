@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/loginn}" method="post">
         <div>
             <label>Username:</label>
             <input type="text" name="username" required/>
@@ -16,6 +16,9 @@
         </div>
         <button type="submit">Login</button>
     </form>
+    <div th:if="${loginError}">
+        <p style="color:red;">Invalid username or password. Please try again.</p>
+    </div>
     <a th:href="@{/users/register}">Don't have an account? Register here</a>
 </body>
 </html>

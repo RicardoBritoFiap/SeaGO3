@@ -7,50 +7,36 @@ CREATE TABLE USERS(
 );
 
 
-CREATE TABLE NAVIOS(
+CREATE TABLE DADOS(
     id NUMBER PRIMARY KEY,
-    nome VARCHAR2(100) NOT NULL,
-    capacidade_carga VARCHAR2(50) NOT NULL,
+    faturamento VARCHAR2(100) NOT NULL,
+    fluxo_vendas VARCHAR2(100) NOT NULL,
+    clientes VARCHAR2(100) NOT NULL,
+    acessos_plataforma VARCHAR2(100) NOT NULL,
     users_id NUMBER,
-    CONSTRAINT fk_users_navios FOREIGN KEY (users_id) REFERENCES USERS(id)
+    CONSTRAINT fk_users_dados FOREIGN KEY (users_id) REFERENCES USERS(id)
 );
 
+ALTER TABLE DADOS DROP CONSTRAINT FK_USERS_DADOS;
 
-INSERT INTO USERS (id, username, email, cnpj, password) 
-VALUES (1, 'joaodasilva', 'joao@email.com', '12345678000195', 'senha123');
-
-INSERT INTO USERS (id, username, email, cnpj, password) 
-VALUES (2, 'mariaferreira', 'maria@email.com', '98765432000167', 'senha456');
-
-
-INSERT INTO NAVIOS (id, nome, capacidade_carga, users_id) 
-VALUES (1, 'Navio Mercante', '5000 toneladas', 1);
-
-INSERT INTO NAVIOS (id, nome, capacidade_carga, users_id) 
-VALUES (2, 'Navio Tanque', '7000 toneladas', 2);
-
-INSERT INTO NAVIOS (id, nome, capacidade_carga, users_id) 
-VALUES (3, 'Navio de Carga', '8000 toneladas', 1);
-
-DROP TABLE USERS;
-DROP TABLE NAVIOS;
-
-CREATE SEQUENCE users_seq
-    START WITH 1
-    INCREMENT BY 1
-    NOCACHE;
-    
-CREATE SEQUENCE navios_seq
-    START WITH 1
-    INCREMENT BY 1
-    NOCACHE;    
-
-SELECT * FROM USERS
-
-ALTER TABLE NAVIOS DROP CONSTRAINT FK_USERS_NAVIOS;
-
-ALTER TABLE NAVIOS
-ADD CONSTRAINT FK_USERS_NAVIOS
+ALTER TABLE DADOS
+ADD CONSTRAINT FK_USERS_DADOS
 FOREIGN KEY (users_id) REFERENCES USERS(id)
 ON DELETE CASCADE;
+
+-- Inserts para UserModel
+INSERT INTO users (id, username, email, cnpj, password) VALUES (1, 'empresa1', 'empresa1@email.com', '12345678000101', 'senha123');
+INSERT INTO users (id, username, email, cnpj, password) VALUES (2, 'empresa2', 'empresa2@email.com', '98765432000109', 'senha456');
+INSERT INTO users (id, username, email, cnpj, password) VALUES (3, 'empresa3', 'empresa3@email.com', '56789012000155', 'senha789');
+
+-- Inserts para DadosModel
+INSERT INTO dados (id, faturamento, fluxo_vendas, clientes, acessos_platadorma, usermodel_id) 
+VALUES (1, '500000', '200 vendas/mês', '300 clientes', '1000 acessos/mês', 1);
+
+INSERT INTO dados (id, faturamento, fluxo_vendas, clientes, acessos_platadorma, usermodel_id) 
+VALUES (2, '750000', '300 vendas/mês', '400 clientes', '1500 acessos/mês', 2);
+
+INSERT INTO dados (id, faturamento, fluxo_vendas, clientes, acessos_platadorma, usermodel_id) 
+VALUES (3, '600000', '250 vendas/mês', '350 clientes', '1200 acessos/mês', 3);
+
 

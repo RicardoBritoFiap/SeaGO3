@@ -15,33 +15,35 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import com.fiap.synthia.empresa.token.AuthService;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping(path = "/users")
+@RequestMapping("/users")
 public class UserController {
+
+    @Autowired
+    private AuthService authService;
+
     @Autowired
     private UserRepository repository;
 
-    // Mostrar a página de registro
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new UserModel());
-        return "register"; // Nome da página Thymeleaf para registro
+        return "register";
     }
 
-    // Processar a requisição de cadastro
-    @PostMapping
-    public String createUser(@ModelAttribute @Valid UserModel user, BindingResult result) {
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute UserModel user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "register"; // Voltar para a página de registro se houver erros
+            return "register";
         }
-        repository.save(user);
-        return "redirect:/login"; // Redirecionar para a página de login após o cadastro
+        authService.registerUser(user);
+        return "redirect:/login";
     }
 
-    // Exibir um usuário específico pelo ID
+    
     @GetMapping("{id}")
     public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
         return repository
@@ -50,14 +52,12 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Listar todos os usuários
     @GetMapping
     public ResponseEntity<List<UserModel>> getUsers() {
         List<UserModel> users = repository.findAll();
         return ResponseEntity.ok(users);
     }
 
-    // Atualizar um usuário existente
     @PutMapping("{id}")
     public ResponseEntity<UserModel> updateUser(@PathVariable Long id, @RequestBody UserModel user) {
         verificarseexisteUser(id);
@@ -66,7 +66,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    // Deletar um usuário pelo ID
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         verificarseexisteUser(id);
@@ -74,7 +73,6 @@ public class UserController {
         return ResponseEntity.ok("User deletado com sucesso");
     }
 
-    // Método auxiliar para verificar se o usuário existe
     private void verificarseexisteUser(Long id) {
         repository
                 .findById(id)

@@ -1,7 +1,6 @@
 package com.fiap.synthia.dadosempresa;
 
-import com.fiap.synthia.dadosempresa.DadosModel;
-import com.fiap.synthia.dadosempresa.DadosRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import jakarta.validation.Valid;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.fiap.synthia.empresa.user.UserModel;
+import com.fiap.synthia.empresa.user.UserRepository;
 
 @Controller
 @RequestMapping("/dados")
@@ -18,27 +24,35 @@ public class DadosController {
     @Autowired
     private DadosRepository dadosRepository;
 
-    // Exibir a página de cadastro de dados
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping
+    public String listDadosForCurrentUser(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = authentication.getName();
+        UserModel currentUser = userRepository.findByUsername(currentUsername)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        List<DadosModel> dadosList = dadosRepository.findByUserId(currentUser.getId());
+        model.addAttribute("dadosList", dadosList);
+        return "dados-list"; 
+    }
+
     @GetMapping("/form")
     public String showDadosForm(Model model) {
         model.addAttribute("dados", new DadosModel());
-        return "dados-form"; // Nome da página Thymeleaf para cadastro de dados
+        return "dados-form"; 
     }
 
-    // Processar o cadastro de dados
     @PostMapping
-    public String createDados(@ModelAttribute DadosModel dados, BindingResult result) {
+    public String createDados(@ModelAttribute @Valid DadosModel dados, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "dados-form";
+            return "dados-form"; 
         }
         dadosRepository.save(dados);
-        return "redirect:/dados"; // Redirecionar para a lista de dados
+        return "redirect:/dados"; 
     }
 
-    // Exibir a lista de dados
-    @GetMapping
-    public String listDados(Model model) {
-        model.addAttribute("dadosList", dadosRepository.findAll());
-        return "dados-list"; // Nome da página Thymeleaf para visualização de dados
-    }
+    
 }
+
