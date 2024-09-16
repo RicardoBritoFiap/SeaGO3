@@ -12,22 +12,27 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain config(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable());
+public SecurityFilterChain config(HttpSecurity http) throws Exception {
+    http.csrf(csrf -> csrf.disable());
 
-        http.authorizeHttpRequests(auth -> auth
-                        // .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                        // .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        // .requestMatchers(HttpMethod.GET, "/users").authenticated()
-                        // .requestMatchers(HttpMethod.GET, "/dados").authenticated()
-                        // .requestMatchers(HttpMethod.POST, "/dados").authenticated()
-                        // .requestMatchers(HttpMethod.DELETE, "/dados").authenticated()
-                        // .requestMatchers(HttpMethod.PUT, "/dados").authenticated() 
-                        .anyRequest().permitAll()
-        );
+    http.authorizeHttpRequests(auth -> auth
+                    .requestMatchers(HttpMethod.GET, "/users/register", "/login").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/users", "/login").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/home", "/dados/**").authenticated()
+                    .anyRequest().authenticated()
+    )
+    .formLogin(form -> form
+        .loginPage("/login")
+        .defaultSuccessUrl("/home", true)
+    )
+    .logout(logout -> logout
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/login")
+    );
 
-        return http.build();
-    }
+    return http.build();
+}
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
