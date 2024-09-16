@@ -1,5 +1,5 @@
 # 🚀SynthAI API #
-Esse repositório trás o crud da API referente ao Aproveitamento das Oportunidades de Vendas, que analisa os dados dos clientes e utiliza algoritmos de recomendação para identificar oportunidades de venda cruzadas e adicionais. Dessa forma, são oferecidos produtos ou serviços extras que atendam às necessidades e preferências individuais de cada cliente. Esse processo resulta em uma experiência mais personalizada e relevante, aumentando as taxas de conversão e otimizando as receitas.
+Esse repositório trás o crud da API e o FrontEnd em Thymeleaf referente ao Aproveitamento das Oportunidades de Vendas, que analisa os dados dos clientes e utiliza algoritmos de recomendação para identificar oportunidades de venda cruzadas e adicionais. Dessa forma, são oferecidos produtos ou serviços extras que atendam às necessidades e preferências individuais de cada cliente. Esse processo resulta em uma experiência mais personalizada e relevante, aumentando as taxas de conversão e otimizando as receitas.
 O restante será reservado para apresentar nas Sprints seguintes do Challenge.
 
 👥 **Integrantes do Grupo:**
@@ -24,4 +24,4 @@ http://localhost:8080/swagger-ui/index.html#/
 <img src="./diagramas/diagrama de classes.png">
 <img src="./diagramas/diagrama modelo logico.png">
 
-## [🎬Link do vídeo](https://youtu.be/VYRM56kuzSs) ##
+## [🎬Link do vídeo](https://youtu.be/5vPf-SuSGFY) ##
